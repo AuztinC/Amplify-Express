@@ -9,6 +9,6 @@ frontend:
       commands:
         - npm run build
   artifacts:
-    baseDirectory: dist/index.js
+    baseDirectory: .amplify-hosting
     files:
       - '**/*'
