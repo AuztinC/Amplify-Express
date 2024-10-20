@@ -2,10 +2,14 @@
 import express from 'express';
 import axios from 'axios'
 
+import path from 'path';
+
 const app: express.Application = express();
-const port = 3000;
+const port = 3000; 
 
 app.use(express.json());
+// app.use(express.static('../client/dist'))
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.listen(port, () => {
   console.log(`server is listening on ${port}`);
@@ -13,6 +17,11 @@ app.listen(port, () => {
 
 // Homepage
 app.get('/', async (req: express.Request, res: express.Response) => {
+
+  res.status(200).sendFile(path.join(__dirname, '../client/dist', 'index.html'))
+});
+
+app.get('/api', async (req: express.Request, res: express.Response) => {
   
   const headers = { headers: {"X-Auth-Token": '2hR8gY9yPmEC0PkB8ScnE19EdvcEannf4xWK'} }
 
